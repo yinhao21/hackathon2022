@@ -19,11 +19,11 @@ namespace hackathon
         {
             if (Input.GetKeyDown("space"))
             {
-                Debug.Log("space key was pressed");
+                float distance = 0;
 
-                if (checker.Check(transform.position, transform.TransformDirection(Vector3.forward)))
+                if (checker.Check(transform.position, transform.TransformDirection(Vector3.forward), out distance))
                 {
-                    Debug.Log("Hit");
+                    Debug.Log("Hit distance " + distance);
                 }
                 else
                 {
