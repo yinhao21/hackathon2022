@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 261e5777ad4ae374eb318821653de6aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 14bfe2e831e301949856811068cf675c, type: 3}
   m_Name: PXR_ProjectSetting
   m_EditorClassIdentifier: 
   useContentProtect: 0
