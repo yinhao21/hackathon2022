@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 4271174163
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: pxr_scene_samplescene
+      Dependencies: {}
