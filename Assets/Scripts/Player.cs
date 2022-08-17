@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,7 @@ namespace hackathon
     public class Player : MonoBehaviour
     {
         [SerializeField] private InputActionReference singSongInputAction;
+        [SerializeField] private InputActionReference footStepInputAction;
         [SerializeField] private GameObject audio_song;
         [SerializeField] private GameObject audio_foot;
         [SerializeField] private AudioSource echo_source;
@@ -27,12 +29,11 @@ namespace hackathon
         {
             checker = new ObstaclesChecker();
             singSongInputAction.action.performed += Sing;
+            footStepInputAction.action.performed += FootStep;
             distance = 0;
             
             voice = audio_song.GetComponent<AudioSource>();
-            footstep = audio_foot.GetComponent<AudioSource>();
             voice.Stop();
-            footstep.Stop();
         }
 
         // Update is called once per frame
@@ -49,6 +50,11 @@ namespace hackathon
         private void Sing(InputAction.CallbackContext obj)
         {
             PlayAudio(voice);
+        }
+        
+        private void FootStep(InputAction.CallbackContext obj)
+        {
+            audio_foot.gameObject.SetActive(false);
         }
         
         public void PlayAudio(AudioSource clip, UnityAction callback = null)
