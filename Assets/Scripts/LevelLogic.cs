@@ -14,7 +14,8 @@ public class LevelLogic : MonoBehaviour
     public AudioSource exitAudio;
     void Start()
     {
-        door.SetBool("IsOpen", false);
+        if(door)
+            door.SetBool("IsOpen", false);
     }
 
     // Update is called once per frame
@@ -28,9 +29,18 @@ public class LevelLogic : MonoBehaviour
         print(obj.name);
         if (obj.CompareTag("Player"))
         {
-            blackImage.Play("LevelChangeIng");
-            moon.Play("LevelChange");
-            StartCoroutine(AudioPlayFinished(3f));
+            if (moon)
+            {
+                moon.Play("LevelChange");
+                blackImage.Play("LevelChangeIng");
+                StartCoroutine(AudioPlayFinished(3f));
+            }
+            else
+            {
+                SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            
+            
         }
     }
     
