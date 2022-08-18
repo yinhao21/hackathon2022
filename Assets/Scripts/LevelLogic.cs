@@ -29,7 +29,7 @@ public class LevelLogic : MonoBehaviour
         {
             blackImage.Play("LevelChangeIng");
             moon.Play("LevelChange");
-            StartCoroutine(AudioPlayFinished(3f));
+            StartCoroutine(AudioPlayFinished(2.5f));
         }
     }
     
