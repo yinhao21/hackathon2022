@@ -12,23 +12,16 @@ namespace hackathon
     {
         [SerializeField] private InputActionReference singSongInputAction;
         [SerializeField] private GameObject audio_song;
-        [SerializeField] private GameObject audio_foot;
         [SerializeField] private AudioSource echo_source;
 
         private ObstaclesChecker checker;
         private float distance;
         const float voice_speed = 100;      // 游戏里的音速（非物理）
         private AudioSource voice;
-        private AudioSource footstep;
-        private AudioEchoFilter voice_filter;
-        private float obj_position_z;
-        private Vector3 orignPos;
 
         // Start is called before the first frame update
         void Start()
         {
-            obj_position_z = this.transform.position.z;
-            orignPos = this.transform.position;
             checker = new ObstaclesChecker();
             singSongInputAction.action.performed += Sing;
             distance = 0;
@@ -40,33 +33,12 @@ namespace hackathon
         // Update is called once per frame
         void Update()
         {
-            if (this.transform.position.z != obj_position_z)
-            {
-                audio_foot.GetComponent<AudioSource>().enabled = true;
 
-                obj_position_z = this.transform.position.z;
-            }
-            else
-            {
-                audio_foot.GetComponent<AudioSource>().enabled = false;
-            }
-            
             if (checker.Check(transform.position, transform.TransformDirection(Vector3.forward), out distance))
             { 
                 //Debug.Log("Hit distance " + distance);
             }else {
                 //Debug.Log("Not hit");
-            }
-        }
-
-        private void OnCollisionEnter(Collision obj)
-        {
-            if (obj.gameObject.CompareTag("Enermy") && obj.gameObject.name.Contains("bee"))
-            {
-                echo_source.clip = Resources.Load<AudioClip>("arrow");
-                echo_source.volume = 0.9f;
-                echo_source.Play();
-                this.transform.position = orignPos;
             }
         }
 
