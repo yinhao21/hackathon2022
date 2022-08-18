@@ -51,9 +51,9 @@ namespace hackathon
             
             if (checker.Check(transform.position, transform.TransformDirection(Vector3.forward), out distance))
             { 
-                Debug.Log("Hit distance " + distance);
+                //Debug.Log("Hit distance " + distance);
             }else {
-                Debug.Log("Not hit");
+                //Debug.Log("Not hit");
             }
         }
 
