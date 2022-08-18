@@ -22,11 +22,13 @@ namespace hackathon
         private AudioSource footstep;
         private AudioEchoFilter voice_filter;
         private float obj_position_z;
+        private Vector3 orignPos;
 
         // Start is called before the first frame update
         void Start()
         {
             obj_position_z = this.transform.position.z;
+            orignPos = this.transform.position;
             checker = new ObstaclesChecker();
             singSongInputAction.action.performed += Sing;
             distance = 0;
@@ -54,6 +56,17 @@ namespace hackathon
                 //Debug.Log("Hit distance " + distance);
             }else {
                 //Debug.Log("Not hit");
+            }
+        }
+
+        private void OnCollisionEnter(Collision obj)
+        {
+            if (obj.gameObject.CompareTag("Enermy") && obj.gameObject.name.Contains("bee"))
+            {
+                echo_source.clip = Resources.Load<AudioClip>("arrow");
+                echo_source.volume = 0.9f;
+                echo_source.Play();
+                this.transform.position = orignPos;
             }
         }
 
